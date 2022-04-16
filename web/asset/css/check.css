@@ -1,0 +1,213 @@
+#body{
+    background:url(../images/home.jpg)repeat  center 0 / cover;
+    /* background-color: rgba(0, 0, 0, 0.289); */
+    /* background: azure; */
+}
+
+.titre
+{
+    width: 100%;
+    padding-left: 10%;
+    padding-top: 150px;
+    z-index: 2;
+}
+.reservation
+{
+    width: 100%;
+    padding-left: 5%;
+    padding-top: 98px;
+    padding-bottom: 99px;
+    z-index: 2;
+    background :rgba(0, 0, 0, 0.289);
+}
+.reservation_section
+{
+    width: 100%;
+    padding-top: 44px;
+
+    border-radius: 25px;
+}
+.section_title
+{
+    font-size: 24px;
+    font-weight: 600;
+    color: #1b1b1b;
+    padding-left: 5%;
+
+}
+.section_subtitle
+{
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+    margin-top: 3px;
+    padding-left: 5%;
+}
+.reservation_form_container
+{
+    width: 100%;
+    margin-top: 46px;
+    padding: 50px;
+
+}
+.reservation_form > div:not(:last-child)
+{
+    margin-bottom: 14px;
+}
+.reservation_form label
+{
+    font-size: 14px;
+    font-weight: 400;
+    font-family:'Arial Narrow Bold', sans-serif;
+    color: #ffffff;
+}
+.reservation_input
+{
+    width: 100%;
+    height: 52px;
+    background: #f2f4f8;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    padding-left: 15px;
+}
+.dropdown_item_select
+{
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: #1b1b1b;
+    border-radius: 15px;
+}
+.dropdown_item_select::-ms-expand
+{
+    display: none;
+}
+.reservation_address_2
+{
+    margin-top: 16px;
+}
+.reservation_extra
+{
+    margin-top: 33px;
+}
+.reservation_extra > div:not(:last-child)
+{
+    margin-bottom: 8px;
+}
+.reservation_extra label
+{
+    display: inline-block;
+}
+
+.information
+{
+    width: 100%;
+    padding-left: 30px;
+    background: #f2f4f8;
+    padding-bottom: 53px;
+    padding-right: 58px;
+}
+.information_list_container
+{
+    margin-top: 46px;
+}
+.information_list_bar
+{
+    margin-bottom: 59px;
+}
+
+.information_list_title,
+.information_list_value
+{
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+
+}
+.information_list li:not(:last-child)
+{
+    margin-bottom: 53px;
+}
+
+.information_text
+{
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+    color: #ffffff;
+    margin-top: 70px;
+}
+.information_button
+{
+    margin-top: 83px;
+}
+
+.place,.dateres,.heur
+{
+    height: 35px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding-left: 15px;
+}
+.ville
+{
+    height: 35px;
+    width: 210px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    padding-left: 15px;
+}
+.Info_extra
+{
+    width: 100%;
+    padding-left: 30px;
+    background: #f2f4f8;
+    color: white;
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0.481) none repeat scroll 0 0;
+    padding-top: 30px;
+    padding-right: 58px;
+    padding-bottom: 30px;
+}
+.header.scrolled
+{
+    height: 70px;
+}
+
+.header.scrolled strong
+{
+    font-size: 28px;
+}
+.header
+{
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+@media screen and (max-width: 767px) {
+    .heur,.ville,.place
+    {
+        height: 35px;
+        width: 150px;
+        background: #ffffff;
+        border: none;
+        outline: none;
+        padding-left: 30%;
+    }
+    .ville
+    {
+        height: 35px;
+        width: 150px;
+        background: #ffffff;
+        border: none;
+        outline: none;
+        padding-left: 0px;
+    }
+}

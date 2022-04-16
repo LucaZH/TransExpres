@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template = "template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="title">
+        <title>TransExpress - Reservation</title>
+    </ui:define> 
+    <ui:define name="content">
+        <div class="reservation" id="#" style="background: url('./asset/images/antananarivo.jpg')">
+            <h:form>
+                <div class="container" style="margin-top: 20px;">
+                    <div id="response"></div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="reservation_section">
+                                <div class="section_title">Réservation</div>
+                                <div class="section_subtitle">Entrer les informations suivante</div>
+                                <div class="reservation_form_container wow fadeInLeft animated">
+                                    <div class="reservation_form" style="color: black">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <label>Nom*</label>
+                                                <h:inputText value= "#{commande.nom}" class="reservation_input" required="true" id="nom" p:placeholder="nom"></h:inputText>
+                                            </div>
+                                            <div class="col-xl-6 last_name_col">
+                                                <label>Prenoms</label>
+                                                <h:inputText value= "#{commande.prenom}" class="reservation_input" required="true" id="prenoms" p:placeholder="Prenoms"></h:inputText>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label>CIN *</label>
+                                            <h:inputText value= "#{commande.CIN}" class="reservation_input" p:placeholder="CIN"></h:inputText>
+                                        </div>
+                                        <div>
+                                            <label>Address*</label>
+                                            <h:inputText value= "#{commande.adresse}" class="reservation_input" required="true" p:placeholder="Adresse" id="adresse"></h:inputText>
+                                        </div>
+                                        <div>
+                                            <label>Email*</label>
+                                            <h:inputText value= "#{commande.email}" class="reservation_input" required="true" p:placeholder="Email" id="email"></h:inputText>
+                                        </div>
+                                        <div>
+                                            <label>Telephone *</label>
+                                            <h:inputText value= "#{commande.tel}" id="telephone" class="reservation_input" p:placeholder="Tel" required="true"></h:inputText>
+                                        </div>
+                                        <br></br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 grid-margin stretch-card">
+                            <div class="card wow fadeInRight animated" data-wow-delay=".5s" style="background:  rgba(0, 0, 0, 0.481) none repeat scroll 0 0;color:white;">
+                                <div class="card-body">
+                                    <div class="card-title" style="font-size: 24px;font-weight: 600;color: #1b1b1b;padding-left: 5%;">Informations réservation</div>
+                                    <div class="card-description">Details</div>
+                                    <div class="forms-sample mt-5">
+                                        <!--<ul class="information_list">-->
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Itineraire</label>
+                                            <div class="col-sm-9">
+                                                <h:selectOneMenu id="itineraire" class="form-control btn-outline-dark" style="border-radius:15px;" value="#{commande.itineraire}">
+                                                    <f:selectItem itemValue='Antsirabe - Antananarivo'></f:selectItem>
+                                                    <f:selectItem itemValue='Antananarivo - Antsirabe'></f:selectItem>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Heure de depart</label>
+                                            <div class="col-sm-9">
+                                                <h:selectOneMenu value= "#{commande.heure_co}" id="heure_co" class="form-control btn-outline-dark" style="border-radius:15px;">
+                                                    <c:forEach items="#{controller.listVoiture}" var="H">
+                                                        <f:selectItem itemValue="#{H.heure_dep1}"></f:selectItem>
+                                                    </c:forEach>
+                                                </h:selectOneMenu> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-3 col-form-label">Num voiture</div>
+                                            <div class="col-sm-9">
+                                                <h:selectOneMenu value= "#{commande.num_voiture}" class="form-control btn-outline-dark" style="border-radius:15px;">
+                                                    <c:forEach items="#{controller.listVoiture}" var="voiture">
+                                                        <f:selectItem itemValue="#{voiture.num_voiture}" class="dropdown-item"></f:selectItem>
+                                                    </c:forEach>
+                                                </h:selectOneMenu> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Date reservation</label>
+                                            <div class="col-sm-9">
+                                                <h:inputText p:type="date" value="#{commande.date_co}" class="form-control btn-outline-dark" style="border-radius:15px;"/>
+                                            </div>
+                                        </div>
+                                        <small id="error" style="color:red;"></small>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Nombre de place</label>
+                                            <div class="col-sm-9">
+                                                <h:inputText value= "#{commande.nb_place}" id = "nb_place" class="form-control btn-outline-dark" style="border-radius:15px;" required="true"></h:inputText>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-3 col-form-label">Total à payer</div>
+                                            <div id="total" class="col-sm-9">12000 ar</div>
+                                        </div>
+
+                                    </div>
+                                    <div class="information_title" id="info" style="text-align: center;">Nb : Veuiller inserer le nombre de place que vous voulez réserver </div>
+                                    <div class="information_button" >
+                                        <h:commandButton action="#{commande.reserver()}" id="submit" value="reserver" class="btn btn-outline-success" style="width: 100%"></h:commandButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+        <div class="container">
+
+            <div class="Info_extra wow fadeInDown animated">
+                <strong><h3>Droits de bagages</h3></strong>
+                <p>1 bagage de 25 kg max pour chaque passager</p>
+                <strong><h3>Depart</h3></strong>
+                <p>Antananarivo : à l'agence de trans Express lots xxxx <br></br> Antsirabe : à l'agence de trans Express lots xxxx</p>
+                <strong><h3>Annulations</h3></strong>
+                <p>En cas d’annulation, vous devez nous prévenir au plus tard 24h avant la date de votre départ. <br></br> Au-delà de cette délais, nous sommes dans l’obligation de vous facturer 50% du montant total de vos réservations. </p>
+                <p>Si vous ne vous présentez pas au moment de votre départ alors il vous faudra payer les frais de réservation</p>
+                <strong><h3>Retards</h3></strong>
+                <p> En cas de retard, vous devrez payer le montant total de vos réservations</p>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

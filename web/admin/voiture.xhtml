@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Admin</title>
+        <link rel="stylesheet" href="./assets/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="./assets/css/style.css"></link>
+        <link rel="stylesheet" href="./assets/font-awesome-4.7.0/css/font-awesome.min.css"></link>
+
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg position-absolute" style="width: 100%">
+            <div class="container">
+                <a class="navbar-brand" href="index.php">
+                    <strong class="fa fa-dashboard">Admin</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="index.xhtml" class="nav-link fa fa-list-alt">Reservation </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="voiture.xhtml" class="nav-link active fa fa-car">Voiture</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="chauffeur.xhtml" class="nav-link fa fa-user">Chauffeur</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="message.xhtml" class="nav-link fa fa-envelope-o">Message</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-panel ml-4 mr-4" style="color: black;margin-top: 100px; width: 100%;">
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h3 class="page-title"> Voitures </h3>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Voitures</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Listes </li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row" style="width: 103%" >
+                    <div class="col-12 mr-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Listes des Voitures</h4>
+                                <a class="btn btn-outline-info btn-rounded text-decoration-none fa fa-plus" href="javascript:scroll()" >Ajouter </a>
+                                <h:form>
+                                    <div class="table table-active">
+                                        <h:dataTable value="#{controller.listVoiture}" var="s" class="table table-responsive-sm align-items-center" style="font-size: 12px;">
+                                            <h:column>
+                                                <f:facet name="header"> ID</f:facet>
+                                                <h:outputText value="#{s.id}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Num voiture</f:facet>
+                                                <h:outputText value="#{s.num_voiture}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Type de voiture</f:facet>
+                                                <h:outputText value="#{s.type}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Nombre de place</f:facet>
+                                                <h:outputText value="#{s.nbplace}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Heur de depart 1</f:facet>
+                                                <h:outputText value="#{s.heure_dep1}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Itineraire 1 </f:facet>
+                                                <h:outputText value="#{s.itinearaire1}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Heur de depart 2</f:facet>
+                                                <h:outputText value="#{s.heure_dep2}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Itineraire 2 </f:facet>
+                                                <h:outputText value="#{s.itinearaire2}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > ID chauff</f:facet>
+                                                <h:outputText value="#{s.id_chauff}"/>
+                                            </h:column>
+                                            <!--                                        <h:column>
+                                                                                        <f:facet name="header" > image </f:facet>
+                                                                                        <h:outputLink value="/TransExpres/GetImage?id=#{s.id}" target="_blank" >
+                                                                                            <h:graphicImage> <f:param name="num_voiture" value="#{s.id}"> </f:param> </h:graphicImage>
+                                                                                            <h:graphicImage value="/TransExpres2.0/GetImage?id=#{s.id}" width="50" height="50"></h:graphicImage>
+                                                                                            <img src="/TransExpres/GetImage?id=#{s.id}" alt="#{s.id}"/>
+                                                                                        </h:outputLink>
+                                                                                    </h:column>-->
+                                            <h:column>
+                                                <f:facet name="header" >Action</f:facet>
+                                                <a class="btn btn-outline-info text-decoration-none fa fa-pencil-square-o" href="javascript:getinfo('#{s.id}','#{s.num_voiture}','#{s.type}','#{s.nbplace}','#{s.itinearaire1}','#{s.itinearaire2}')" >Modifier </a>
+                                                <h:commandButton action="#{voiture.delvoiture(s.id)}" p:class="fa fa-trash btn btn-outline-danger btn-rounded" value="Suppriner"> </h:commandButton> 
+
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 grid-margin mt-4 mb-4" id="ajout">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Ajouter/Modifier un Voiture</h4>
+                                <p class="card-description"> Entrer les information requise </p>
+                                <h:form class="forms-sample" enctype="multipart/form-data" id="voiture">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Id (Facultatif si ajout)</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText  class="form-control" p:placeholder="Id" id="id" value="#{voiture.id}"/>
+                                                    <!--<input--> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Num voiture</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText  class="form-control" p:placeholder="Num voiture" value="#{voiture.num_voiture}" id="num"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Type</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText class="form-control" p:placeholder="Heure de depart 1 " value="#{voiture.type}" id="type"/>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Nombre de place</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText p:type="number" class="form-control" p:placeholder="Nombre de place" value="#{voiture.nbplace}" id="nbplace"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Photo</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputFile value="#{voiture.image}" class="form-control-file btn-light" id="image" ></h:inputFile>
+                                                    <!--                                                    <input type="file" name="img[]" class="file-upload-default"/>
+                                                                                                        <input type="text" class="form-control file-upload-info" disabled="true" placeholder="Upload Image">
+                                                                                                            <span class="input-group-append">
+                                                                                                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                                                                                            </span>
+                                                                                                        </input>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Id chauffeur</label>
+                                                <div class="col-sm-9">
+                                                    <h:selectOneMenu value= "#{voiture.id_chauff}" class="form-control">
+                                                        <c:forEach items="#{controller.listChauffeur}" var="C" >
+                                                            <f:selectItem itemValue="#{C.id}" id="id_chauffeur" ></f:selectItem>
+                                                        </c:forEach>
+                                                    </h:selectOneMenu> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Heure de depart 1</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText p:type="time" class="form-control" p:placeholder="Heure de depart 1 " value="#{voiture.heure_dep1}" id="heured1"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Itineraire 1</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText p:type="text" class="form-control" p:placeholder="Itineraire 1" value="#{voiture.itinearaire1}" id="itineraire1"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Heure de depart 2</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText p:type="time" class="form-control" p:placeholder="Heure de depart 2 " value="#{voiture.heure_dep2}" id="heured2"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Itineraire 2</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText p:type="text" class="form-control" p:placeholder="Itineraire 2" value="#{voiture.itinearaire2}" id="itineraire2"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <h:commandButton  action="#{voiture.addvoiture()}" class="btn btn-outline-success  btn-rounded get-started-btn mr-2" value="Ajouter"/>
+                                        <h:commandButton class="btn btn-outline-dark btn-rounded get-started-btn" action="#{voiture.modifvoiture(voiture.id)}"  value="Modifer" />
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./assets/js/jquery.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+        <script>
+            function getinfo(id, num_voiture, type, nbplace, itineraire1, itineraire2) {
+                document.getElementById("voiture:id").value = id;
+                document.getElementById("voiture:num").value = num_voiture;
+                document.getElementById("voiture:type").value = type;
+                document.getElementById("voiture:nbplace").value = nbplace;
+                document.getElementById("voiture:itineraire1").value = itineraire1;
+                document.getElementById("voiture:itineraire2").value = itineraire2;
+                var element = document.getElementById("ajout");
+                element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+
+
+            }
+            ;
+            function scroll() {
+                var element = document.getElementById("ajout");
+                element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+            }
+            ;
+            function avid() {
+                var id;
+                id = document.getElementById("voiture:id").value;
+                return id;
+            }
+            ;
+
+        </script>
+    </h:body>
+</html>
+

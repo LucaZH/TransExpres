@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Admin</title>
+        <link rel="stylesheet" href="./assets/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="./assets/css/style.css"></link>
+        <link rel="stylesheet" href="./assets/font-awesome-4.7.0/css/font-awesome.min.css"></link>
+        
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg position-absolute" style="width: 100%">
+            <div class="container">
+                <a class="navbar-brand" href="index.php">
+                    <strong class="fa fa-dashboard">Admin</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="index.xhtml" class="nav-link active fa fa-list-alt">Reservation </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="voiture.xhtml" class="nav-link fa fa-car">Voiture</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="chauffeur.xhtml" class="nav-link fa fa-user">Chauffeur</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="message.xhtml" class="nav-link fa fa-envelope-o">Message</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav style="margin-top: 100px;">
+            <div class="content-wrapper ml-4">
+                <div class="page-header">
+                    <h3 class="page-title" style="margin-left: 10px; color: black;"> Reservation </h3>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Reservation</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Listes </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <section class="col-12 grid-margin ml-2 mt-4 mb-4">
+                <div class="containerP" style="margin-top: 25px;">
+                    <div class="row">
+                        <h:dataTable value="#{controller.listCommande}" var="s" class="table table-responsive-sm align-items-center" >
+                            <h:column>
+                                <f:facet name="header" > ID</f:facet>
+                                <h:outputText value="#{s.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" > Username</f:facet>
+                                <h:outputText value="#{s.nom}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" > Prenom</f:facet>
+                                <h:outputText value="#{s.prenom}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" > email</f:facet>
+                                <h:outputText value="#{s.email}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" > tel</f:facet>
+                                <h:outputText value="#{s.tel}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" > Adresse</f:facet>
+                                <h:outputText value="#{s.adresse}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" > CIN</f:facet>
+                                <h:outputText value="#{s.CIN}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" > Num voiture</f:facet>
+                                <h:outputText value="#{s.num_voiture}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" > Nombre de place</f:facet>
+                                <h:outputText value="#{s.nb_place}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" > Itineraire</f:facet>
+                                <h:outputText value="#{s.itineraire}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" > Date commande</f:facet>
+                                <h:outputText value="#{s.date_co}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" > Heure commande</f:facet>
+                                <h:outputText value="#{s.heure_co}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </div>
+            </section>
+            <div class="main-panel col-12 grid-margin ml-2 mt-4 mb-4">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-lg-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Area chart</h4>
+                                    <canvas id="areaChart" style="height:250px"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+        <script src="./assets/js/jquery.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+        <script src="./assets/js/Chart.min.js"></script>
+        <script>
+            $(function () {
+                'use strict';
+                var areaData = {
+                    labels: ["Janvier", "fevrier", "mars", "avril", "mai"],
+                    datasets: [{
+                            label: 'Nombre total des clients',
+                            data: [12, 19,12,3,4],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1,
+                            fill: true, // 3: no fill
+                        }]
+                };
+
+                var areaOptions = {
+                    plugins: {
+                        filler: {
+                            propagate: true
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                                gridLines: {
+                                    color: "rgba(204, 204, 204,0.1)"
+                                }
+                            }],
+                        xAxes: [{
+                                gridLines: {
+                                    color: "rgba(204, 204, 204,0.1)"
+                                }
+                            }]
+                    }
+                };
+                if ($("#areaChart").length) {
+                    var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
+                    var areaChart = new Chart(areaChartCanvas, {
+                        type: 'line',
+                        data: areaData,
+                        options: areaOptions
+                    });
+                }
+            });
+        </script>
+    </h:body>
+</html>
+

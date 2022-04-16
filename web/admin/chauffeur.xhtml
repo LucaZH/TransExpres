@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Admin</title>
+        <link rel="stylesheet" href="./assets/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="./assets/css/style.css"></link>
+        <link rel="stylesheet" href="./assets/font-awesome-4.7.0/css/font-awesome.min.css"></link>
+
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg position-absolute" style="width: 100%">
+            <div class="container">
+                <a class="navbar-brand" href="index.php">
+                    <strong class="fa fa-dashboard">Admin</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="index.xhtml" class="nav-link fa fa-list-alt">Reservation </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="voiture.xhtml" class="nav-link  fa fa-car">Voiture</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="chauffeur.xhtml" class="nav-link active fa fa-user">Chauffeur</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="message.xhtml" class="nav-link fa fa-envelope-o">Message</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="main-panel ml-4 mr-4" style="color: black;margin-top: 100px; width: 100%;">
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h3 class="page-title"> Chauffeur </h3>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Chauffeur</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Listes </li>
+                        </ol>
+                    </nav>
+                </div>
+                <!--<div class="d-flex justify-content-center ml-1 "  >-->
+                <div class="row">
+                    <div class="col-12" style=" width: 100%">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Listes des Chauffeur</h4>
+                                <div class="table-responsive">
+                                    <h:form>
+                                        <h:dataTable value="#{controller.listChauffeur}" var="s" class="table table-responsive-sm align-items-center" style="font-size: 12px;">
+
+                                            <h:column>
+                                                <f:facet name="header" > Id</f:facet>
+                                                <h:outputText value="#{s.id}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Nom</f:facet>
+                                                <h:outputText value="#{s.nom}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Prenoms</f:facet>
+                                                <h:outputText value="#{s.prenoms}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Ages </f:facet>
+                                                <h:outputText value="#{s.age}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > CIN</f:facet>
+                                                <h:outputText value="#{s.CIN}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Adresse </f:facet>
+                                                <h:outputText value="#{s.adresse}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Experience</f:facet>
+                                                <h:outputText value="#{s.experience}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Tel</f:facet>
+                                                <h:outputText value="#{s.telephone}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" > Salaire</f:facet>
+                                                <h:outputText value="#{s.salaire}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header" >Action</f:facet>
+                                                <a class="btn btn-outline-info text-decoration-none fa fa-pencil" href="javascript:getinfo('#{s.id}','#{s.nom}','#{s.prenoms}','#{s.age}','#{s.CIN}','#{s.adresse}','#{s.experience}','#{s.telephone}','#{s.salaire}')" >Modifier </a>
+                                                <h:commandButton action="#{chauffeur.delchauffeur(s.id)}" class="btn btn-outline-danger btn-rounded fa" value="Suppriner"> </h:commandButton> 
+
+                                            </h:column>
+
+                                            <!--                                        <h:column>
+                                                                                        <f:facet name="header" > image </f:facet>
+                                                                                        <h:graphicImage url="#{s.image}"></h:graphicImage>
+                                                                                    </h:column>-->
+                                        </h:dataTable>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 grid-margin mt-4 mb-4 mr-4 " id="ajout" style="margin-top: 50px;">
+                    <div class="stretch-card" style=" width: 103%">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Ajouter un Chauffeur</h4>
+                                <p class="card-description"> Entrer les information requise </p>
+                                <h:form class="forms-sample" enctype="multipart/form-data" id="chauffeur">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Nom</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText  class="form-control" p:placeholder="Nom" id="nom" value="#{chauffeur.nom}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Prenoms</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText class="form-control" p:placeholder="Prenoms" id="prenoms" value="#{chauffeur.prenoms}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Age</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText p:type="number" class="form-control" p:placeholder="Ages" id="ages" value="#{chauffeur.age}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label  class="col-sm-3 col-form-label">CIN</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText p:type="number" class="form-control" p:placeholder="CIN" id="cin" value="#{chauffeur.CIN}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label  class="col-sm-3 col-form-label">Adresse</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText p:type="text" class="form-control" p:placeholder="Adresse" id="adress" value="#{chauffeur.adresse}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label  class="col-sm-3 col-form-label">id</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText p:type="text" class="form-control" p:placeholder="id" id="id" value="#{chauffeur.id}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label  class="col-sm-3 col-form-label">Experience</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText p:type="number" class="form-control" p:placeholder="Experience " id="experience" value="#{chauffeur.experience}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label  class="col-sm-3 col-form-label">Telephone</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText p:type="Number" class="form-control" p:placeholder="Itineraire 2" id="tel" value="#{chauffeur.telephone}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label  class="col-sm-3 col-form-label">Salaire</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText p:type="number" class="form-control" p:placeholder="Id chauffeur" id="salaire" value="#{chauffeur.salaire}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Image</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputFile value="#{chauffeur.image}" class="form-control"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h:commandButton type="submit" action="#{chauffeur.addchauffeur()}" class="btn btn-outline-success  btn-rounded get-started-btn mr-2" value="Ajouter"/>
+                                    <h:commandButton  class="btn btn-outline-dark btn-rounded get-started-btn" value="Modifier" action="#{chauffeur.modifchauffeur(chauffeur.id)}" />
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./assets/js/jquery.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+        <script>
+            function getinfo(id, nom, prenoms, ages, cin, adress, experience, tel, salaire) {
+                document.getElementById("chauffeur:id").value = id;
+                document.getElementById("chauffeur:nom").value = nom;
+                document.getElementById("chauffeur:prenoms").value = prenoms;
+                document.getElementById("chauffeur:ages").value = ages;
+                document.getElementById("chauffeur:cin").value = cin;
+                document.getElementById("chauffeur:adress").value = adress;
+                document.getElementById("chauffeur:experience").value = experience;
+                document.getElementById("chauffeur:tel").value = tel;
+                document.getElementById("chauffeur:salaire").value = salaire;
+                var element = document.getElementById("ajout");
+                element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+            }
+            ;
+            function scroll() {
+                var element = document.getElementById("ajout");
+                element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+            }
+            ;
+        </script>
+    </h:body>
+</html>
+

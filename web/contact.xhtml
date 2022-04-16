@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template = "template/template.xhtml"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <ui:define name="title">
+        <title>TransExpress - Contact</title>
+    </ui:define> 
+    <ui:define name="content">
+        <section>
+            <h:form>
+                <div class="container" id="#">
+                    <div id="response"></div>
+                    <div class="row"  style="background:rgba(0, 0, 0,0.5); border-radius: 30px;color: #FFFFFF;">
+
+                        <div class="col-lg-6 mx-auto col-md-7 col-12 py-5 mt-5 text-center">
+
+                            <h1 class="mb-4">Pour nous <strong>contacter</strong> remplisser le <strong>champs</strong> ci-dessous</h1>
+
+                            <p>ou envoyez un e-mail à <a>trans.express@gmail.com</a></p>
+                        </div>
+
+                        <div class="col-lg-8 mx-auto col-md-10 col-12">
+                            <div class="row" style="padding-top: 20px;">
+                                <div class="col-lg-6 col-12">
+                                    <h:inputText class="form-control" id="username" value="#{message.username}" p:placeholder="Username"></h:inputText>
+                                </div>
+
+                                <div class="col-lg-6 col-12">
+                                    <h:inputText class="form-control" id="email" value="#{message.email}" p:placeholder="Email"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="row"  style="padding-top: 20px;">
+                                <div class="col-lg-12 col-12">
+                                    <h:inputTextarea class="form-control" id="message" rows="6" value="#{message.messages}" p:placeholder="Messages" ></h:inputTextarea>
+                                </div>
+                            </div>
+                            <div class="row"  style="padding-top: 20px;">
+                                <div class="col-lg-5 mx-auto col-7" style="padding-top: 20px; padding-bottom: 50px;" >
+                                    <h:commandButton class="btn btn-primary btn-lg btn-ornge" value="Envoyer message" action="#{message.envoyer()}" style="height: 60px;"></h:commandButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </h:form>
+        </section>
+    </ui:define>
+</ui:composition>
